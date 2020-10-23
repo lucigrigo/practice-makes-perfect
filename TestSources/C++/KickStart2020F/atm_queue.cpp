@@ -17,7 +17,7 @@ void solve(int i, queue<pair<int, int> > q, int x, int n) {
       }
   }
 
-  cout << "Case #" << i << ": ";
+  cout << "Case #" << i + 1 << ": ";
   for(int j = 0; j < ans.size(); ++j) {
       cout << ans[j] + 1 << " ";
   }
