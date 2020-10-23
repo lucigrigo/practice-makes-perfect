@@ -12,9 +12,7 @@ void solve(int i) {
     int D[100][100];
 
     for(int j = 0; j < n[i] - 1; ++j) {
-        // merging cards
-
-        // choosing maximum merging
+        
     }
 
 }
