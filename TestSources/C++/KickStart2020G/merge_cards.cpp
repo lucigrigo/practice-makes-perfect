@@ -18,7 +18,6 @@ void solve(int i) {
 }
 
 int main() {
-    ios::sync_with_stdio(0);
     cin >> T;
 
     for(int i = 0; i < T; ++i) {
