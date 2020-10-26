@@ -7,7 +7,7 @@ void solve(int no_case, int N, int M, int S, int R,
            vector<pair<int, vector<int> > > stones_available,
            vector<pair<int, vector<int> > > recipes)
 {
-
+    // TODO
 }
 
 int main()
