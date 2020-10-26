@@ -9,12 +9,7 @@ int v[100][100];
 int ans[100];
 
 void solve(int i) {
-    int D[100][100];
-
-    for(int j = 0; j < n[i] - 1; ++j) {
-
-    }
-
+    // TODO
 }
 
 int main() {
