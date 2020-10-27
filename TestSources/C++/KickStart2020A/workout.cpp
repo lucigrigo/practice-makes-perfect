@@ -6,6 +6,7 @@ const int mxN = 1e6;
 void solve(int no_case, int n, int k, int v[mxN])
 {
     ++no_case;
+    
 }
 
 int main()
