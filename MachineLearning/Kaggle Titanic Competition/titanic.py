@@ -4,7 +4,7 @@ print(' --------------------- KAGGLE TITANIC COMPETITION  ---------------------'
 # importing libraries
 import numpy as np
 import pandas as pd
-# from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 # from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
@@ -27,31 +27,30 @@ x_test = test_dataset.iloc[:, [3, 5, 6]].values
 y_test = y_test_dataset.iloc[:, 1].values
 
 # labeling genders
-ohenc = OneHotEncoder(handle_unknown = 'ignore')
-genders = [['male', 0], ['female', 1]]
-ohenc.fit(genders)
-x_train[:, 0] = ohenc.transform(x_train[:, 0].reshape(-1, 1))
+le1 = LabelEncoder()
+le2 = LabelEncoder()
+x_train[:, 0] = le1.fit_transform(x_train[:, 0])
+x_test[:, 0] = le2.fit_transform(x_test[:, 0])
+# x_train[:, 0] = ohenc.fit_transform(x_train[:, 0].reshape(-1, 1))
+# x_test[:, 0] = ohenc.fit_transform(x_test[:, 0].reshape(-1, 1))
 
 # dealing with nan data
-# imp = SimpleImputer(missing_values=np.nan, strategy='mean')
-# x_train_imp = imp.fit_transform(x_train)
-# x_test_imp = imp.fit_transform(x_test)
+imp = SimpleImputer(missing_values=np.nan, strategy='mean')
+x_train_imp = imp.fit_transform(x_train)
+x_test_imp = imp.fit_transform(x_test)
 
 # feature scaling
-# sc = StandardScaler()
-# x_train = sc.fit_transform(x_train)
-# x_test = sc.fit_transform(x_test)
-
-import sys
-sys.exit()
+sc = StandardScaler()
+x_train_imp = sc.fit_transform(x_train_imp)
+x_test_imp = sc.fit_transform(x_test_imp)
 
 # ----------------------------- RANDOM FOREST CLASSIFIER ---------------
 # training using entropy criterion
 rfc = RandomForestClassifier(n_estimators=1000, criterion='entropy', n_jobs=-1)
-rfc.fit(x_train_imp, y_train)
+rfc.fit(x_train, y_train)
 
 # predicting results
-y_pred_rfc = rfc.predict(x_test_imp)
+y_pred_rfc = rfc.predict(x_test)
 
 # visualising confusion matrix & computing accuracy score
 print('\nRandom Forest Classifier (entropy) results:')
@@ -108,7 +107,14 @@ print('\nK-Nearest Neighbours results:')
 print('confusion matrix = \n' + str(confusion_matrix(y_test, y_pred_knn)))
 print('accuracy = ' + str(accuracy_score(y_test, y_pred_knn)))
 
-# ----------------------------- K-NN CLASSIFIER ---------------
-
+# ----------------------------- EXPORTING BEST RESULT ---------------
+result = []
+for i in range(892, 1310):
+    row = [i, y_pred_knn[i - 892]]
+    result.append(row)
+import csv
+with open('titanic_result_knn.csv', "w+") as csv_file:
+    csvWriter = csv.writer(csv_file, delimiter = ',')
+    csvWriter.writerows(result)
 
 print('\n------------------------------------------------------------------------\n')
