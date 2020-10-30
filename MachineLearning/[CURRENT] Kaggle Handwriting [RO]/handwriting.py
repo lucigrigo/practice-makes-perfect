@@ -62,7 +62,6 @@ for index in range(20000, 22000):
     img_final_bin = cv2.addWeighted(verticle_lines_img, alpha, horizontal_lines_img, beta, 0.0)
     img_final_bin = cv2.erode(~img_final_bin, kernel, iterations=2)
     (_, img_final_bin) = cv2.threshold(img_final_bin, 150,255, cv2.THRESH_BINARY)
-    cv2.imwrite("img_final_bin.jpg",img_final_bin)
     
     # Find contours for image, which will detect all the boxes
     contours, _ = cv2.findContours(img_final_bin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
@@ -136,7 +135,6 @@ for index in range(22000, 24499):
     img_final_bin = cv2.addWeighted(verticle_lines_img, alpha, horizontal_lines_img, beta, 0.0)
     img_final_bin = cv2.erode(~img_final_bin, kernel, iterations=2)
     (_, img_final_bin) = cv2.threshold(img_final_bin, 150,255, cv2.THRESH_BINARY)
-    cv2.imwrite("img_final_bin.jpg",img_final_bin)
     
     # Find contours for image, which will detect all the boxes
     contours, _ = cv2.findContours(img_final_bin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
