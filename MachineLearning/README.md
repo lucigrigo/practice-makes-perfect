@@ -3,7 +3,7 @@ Mostly Kaggle-related work such as:
 - Datasets & Datasets Tasks 
 - Kaggle Notebooks code
 
-.. or other ML related data, such as datasets
+.. or other ML related data
 
 
 # For more information go to my [Kaggle Profile](https://www.kaggle.com/grigorelucian)
