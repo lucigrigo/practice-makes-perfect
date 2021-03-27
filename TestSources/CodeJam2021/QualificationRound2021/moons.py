@@ -1,14 +1,19 @@
-def solve(caseno, S, X, Y):
-	cost = 0
-
-	# backtracking
-
-	print(f'Case #{caseno + 1}: {cost}')
-
 if __name__ == '__main__':
 	T = int(input())
 
-	for i in range(T):
-		line = input().split(' ')
-		X, Y, S = line[0], line[1], line[2]
-		solve(i, S, X, Y)
+	for j in range(T):
+		ln = input().split()
+		x, y, s = int(ln[0]), int(ln[1]), ln[2]
+		ans = 0
+		n = len(s)
+		prev = 'I'
+		for i in range(n):
+			if s[i] == 'C':
+				if prev == 'J':
+					ans += y
+				prev = 'C'
+			elif s[i] == 'J':
+				if prev == 'C':
+					ans += x
+				prev = 'J'
+		print(f'Case #{j + 1}: {ans}')
